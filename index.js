@@ -125,11 +125,11 @@ for (let person of mockData) {
   //gender match?
   // - Their gender_interest and your gender match. 
   // - Your gender_interest and their gender match. 
-  if (person.gender_interest === "X" ) {
-      person.gender_interest  = ["F", "M"];
+  if (person.gender_interest === "X") {
+    person.gender_interest = ["F", "M"];
   }
-  if ( person.gender === "X") {
-      person.gender = ["F", "M"];
+  if (person.gender === "X") {
+    person.gender = ["F", "M"];
   }
   if (person.gender_interest === profile.gender) {
     genderMatch = true;
