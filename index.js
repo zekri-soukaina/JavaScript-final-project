@@ -34,10 +34,9 @@ let profile = {};
 let numericInput;
 
 console.log("Lets start:");
-console.log("---------------------------")
+console.log("---------------------------");
 
 for (const question in questions) {
-
   while (questions) {
     let answer = prompt(questions[question] + ">");
     profile[question] = answer;
@@ -54,7 +53,8 @@ for (const question in questions) {
 
     if (
       questions[question] === "What is your age?" ||
-      questions[question] === "What is the minimum age you are interested in?" ||
+      questions[question] ===
+      "What is the minimum age you are interested in?" ||
       questions[question] === "What is the maximum age you are interested in?"
     ) {
       numericInput = Number(answer);
@@ -70,7 +70,8 @@ for (const question in questions) {
 
     if (
       questions[question] === "What is your gender? (F, M, X)" ||
-      questions[question] === "Which genders are you interested in dating? (F, M, X)"
+      questions[question] ===
+      "Which genders are you interested in dating? (F, M, X)"
     ) {
       if (answer !== "F" && answer !== "M" && answer !== "X") {
         console.log("Please choose between F, M, X");
@@ -103,13 +104,12 @@ for (const question in questions) {
 
 console.log(profile);
 console.log("Thank you for your answers");
-console.log("---------------------------")
+console.log("---------------------------");
 
 //  match the user with another person based on certain preferences.
 let matches = [];
 
 for (let person of mockData) {
-
   let ageMatch = false;
   let genderMatch = false;
   let locationMatch = false;
@@ -117,37 +117,35 @@ for (let person of mockData) {
   //  age match?
   if (profile.min_age_interest <= person.age <= profile.max_age_interest) {
     if (person.min_age_interest <= profile.age <= person.max_age_interest) {
-
       ageMatch = true;
     }
   }
 
   //gender match?
-  // - Their gender_interest and your gender match. 
-  // - Your gender_interest and their gender match. 
+  // - Their gender_interest and your gender match.
+  // - Your gender_interest and their gender match.
   if (person.gender_interest === "X") {
     person.gender_interest = ["F", "M"];
   }
   if (person.gender === "X") {
     person.gender = ["F", "M"];
   }
-  if (person.gender_interest === profile.gender) {
+  // if (person.gender_interest === profile.gender) {
+  //   genderMatch = true;
+  // }
+  // if (profile.gender_interest === person.gender) {
+  //   genderMatch = true;
+  // }
+  if (person.gender_interest === profile.gender && profile.gender_interest === person.gender) {
     genderMatch = true;
   }
-  if (profile.gender_interest === person.gender) {
-    genderMatch = true;
-  }
-
-
   //location match ?
   if (person.location === profile.location) {
-
     locationMatch = true;
   }
 
   // A match ?
   if (ageMatch && genderMatch && locationMatch) {
-
     matches.push(person);
   } else {
     // console.log("no match");
@@ -158,6 +156,6 @@ for (let person of mockData) {
 console.log(`you have ${matches.length} match!`);
 
 for (const match of matches) {
-  console.log(match)
+  console.log(match);
   // console.log(match.first_name, match.last_name, match.age, match.location);
 }
